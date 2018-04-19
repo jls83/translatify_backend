@@ -11,4 +11,4 @@ class TranslatedPhraseSerializer(serializers.ModelSerializer):
 class PhraseRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhraseRequest
-        fields = ('requested_phrase', 'requesting_user', 'cache_hit', 'time_requested')
+        fields = ('id', 'requested_phrase', 'requesting_user', 'cache_hit', 'time_requested')

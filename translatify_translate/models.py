@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 
 
 class TranslatedPhrase(models.Model):
+    """
+    TO DO:
+        * UniqueKey input_phrase
+
+    """
     input_phrase = models.CharField(max_length=500)
     input_language = models.CharField(max_length=25)
     output_phrase = models.CharField(max_length=500)
