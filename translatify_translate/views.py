@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from translatify_translate.models import TranslatedPhrase, PhraseRequest
 from translatify_translate.serializers import TranslatedPhraseSerializer, PhraseRequestSerializer
+from translatify_translate.services import translate_phrase
 
 
 class TranslatedPhraseList(APIView):
@@ -67,13 +68,10 @@ class PhraseRequestList(APIView):
         if serializer.is_valid():
             try:
                 translated_phrase = TranslatedPhrase.objects.get(input_phrase=serializer.validated_data['requested_phrase'])
+
                 serializer.validated_data['cache_hit'] = True
             except TranslatedPhrase.DoesNotExist:
-                translated_phrase = TranslatedPhrase(
-                    input_phrase=serializer.validated_data['requested_phrase'],
-                    input_language='TEST',
-                    output_phrase='TranslatedTest'
-                )
+                translated_phrase = translate_phrase(serializer.validated_data['requested_phrase'])
                 translated_phrase.save()
             tp_serialized = TranslatedPhraseSerializer(translated_phrase)
             serializer.save()
