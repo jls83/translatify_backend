@@ -9,10 +9,11 @@ class TranslatedPhrase(models.Model):
 
 
 class PhraseRequest(models.Model):
-    requested_phrase = models.ForeignKey(TranslatedPhrase, on_delete=models.CASCADE)
+    requested_phrase = models.CharField(max_length=500)
     requesting_user = models.ForeignKey(User, on_delete=models.CASCADE)
     cache_hit = models.BooleanField(default=False)
     time_requested = models.DateTimeField(auto_now_add=True)
+    translated_phrase = models.ForeignKey(TranslatedPhrase, on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ('-time_requested',)
