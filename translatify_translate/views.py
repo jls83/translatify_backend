@@ -9,21 +9,6 @@ from translatify_translate.models import TranslatedPhrase, PhraseRequest
 from translatify_translate.serializers import TranslatedPhraseSerializer, PhraseRequestSerializer
 
 
-# @csrf_exempt
-# @api_view(['GET', 'POST'])
-# def phrase_list(request, format=None):
-#     """ View all translated phrases """
-#     if request.method == 'GET':
-#         phrases = TranslatedPhrase.objects.all()
-#         serializer = TranslatedPhraseSerializer(phrases, many=True)
-#         return Response(serializer.data)
-#     elif request.method == 'POST':
-#         serializer = TranslatedPhraseSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class PhraseList(APIView):
     """ View all translated phrases """
     def get(self, request, format=None):
