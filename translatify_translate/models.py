@@ -12,6 +12,9 @@ class TranslatedPhrase(models.Model):
     input_language = models.CharField(max_length=25)
     output_phrase = models.CharField(max_length=500)
 
+    class Meta:
+        unique_together = (('input_phrase', 'input_language'),)
+
 
 class PhraseRequest(models.Model):
     requested_phrase = models.CharField(max_length=500)
