@@ -1,48 +1,67 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from translatify_translate.models import TranslatedPhrase, PhraseRequest
 from translatify_translate.serializers import TranslatedPhraseSerializer, PhraseRequestSerializer
 
 
+# @csrf_exempt
+# @api_view(['GET', 'POST'])
+# def phrase_list(request, format=None):
+#     """ View all translated phrases """
+#     if request.method == 'GET':
+#         phrases = TranslatedPhrase.objects.all()
+#         serializer = TranslatedPhraseSerializer(phrases, many=True)
+#         return Response(serializer.data)
+#     elif request.method == 'POST':
+#         serializer = TranslatedPhraseSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
-def phrase_list(request):
+class PhraseList(APIView):
     """ View all translated phrases """
-    if request.method == 'GET':
+    def get(self, request, format=None):
         phrases = TranslatedPhrase.objects.all()
         serializer = TranslatedPhraseSerializer(phrases, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TranslatedPhraseSerializer(data=data)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = TranslatedPhraseSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def phrase_detail(request, pk):
+
+class PhraseDetail(APIView):
     """ Perform operations on a single TranslatedPhrase """
-    try:
-        phrase = TranslatedPhrase.objects.get(pk=pk)
-    except TranslatedPhrase.DoesNotExist:
-        return HttpResponse(status=404)
+    def get_object(self, pk):
+        try:
+            return TranslatedPhrase.objects.get(pk=pk)
+        except TranslatedPhrase.DoesNotExist:
+            raise Http404
 
-    if request.method == 'GET':
+    def get(self, request, pk, format=None):
+        phrase = self.get_object(pk)
         serializer = TranslatedPhraseSerializer(phrase)
-        return JsonResponse(serializer.data)
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TranslatedPhraseSerializer(phrase, data=data)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        phrase = self.get_object(pk)
+        serializer = TranslatedPhraseSerializer(phrase, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
-    elif request.method == 'DELETE':
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        phrase = self.get_object(pk)
         phrase.delete()
-        return HttpResponse(status=204)
-
-
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
