@@ -68,7 +68,6 @@ class PhraseRequestList(APIView):
         if serializer.is_valid():
             try:
                 translated_phrase = TranslatedPhrase.objects.get(input_phrase=serializer.validated_data['requested_phrase'])
-
                 serializer.validated_data['cache_hit'] = True
             except TranslatedPhrase.DoesNotExist:
                 translated_phrase = translate_phrase(serializer.validated_data['requested_phrase'])
