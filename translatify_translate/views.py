@@ -51,7 +51,12 @@ class TranslatedPhraseDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PhraseRequestList(APIView):
-    """ View all requested translations """
+    """ View all requested translations
+
+        TO DO:
+            * Breakout language check after checking serializer.is_valid()
+
+    """
     def get(self, request, format=None):
         phrases = PhraseRequest.objects.all()
         serializer = PhraseRequestSerializer(phrases, many=True)
@@ -60,20 +65,19 @@ class PhraseRequestList(APIView):
     def post(self, request, format=None):
         serializer = PhraseRequestSerializer(data=request.data)
         if serializer.is_valid():
-            translated_phrase_set = TranslatedPhrase.objects.filter(input_phrase=serializer.validated_data['requested_phrase'])
-            if translated_phrase_set:
+            try:
+                translated_phrase = TranslatedPhrase.objects.get(input_phrase=serializer.validated_data['requested_phrase'])
                 serializer.validated_data['cache_hit'] = True
-                tp_serialized = TranslatedPhraseSerializer(translated_phrase_set[0])
-            else:
-                new_translated_phrase = TranslatedPhrase(
+            except TranslatedPhrase.DoesNotExist:
+                translated_phrase = TranslatedPhrase(
                     input_phrase=serializer.validated_data['requested_phrase'],
                     input_language='TEST',
                     output_phrase='TranslatedTest'
                 )
-                new_translated_phrase.save()
-                tp_serialized = TranslatedPhraseSerializer(new_translated_phrase)
+                translated_phrase.save()
+            tp_serialized = TranslatedPhraseSerializer(translated_phrase)
             serializer.save()
-            return Response(tp_serialized.data, status=status.HTTP_200_OK)
+            return Response(tp_serialized.data, status=status.HTTP_302_FOUND)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

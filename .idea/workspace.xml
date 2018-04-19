@@ -20,6 +20,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/apps.py" afterPath="$PROJECT_DIR$/translatify_translate/apps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/translatify_translate/migrations/0001_initial.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/migrations/0002_auto_20180419_1109.py" afterPath="$PROJECT_DIR$/translatify_translate/migrations/0002_auto_20180419_1109.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/migrations/0003_auto_20180419_1745.py" afterPath="$PROJECT_DIR$/translatify_translate/migrations/0003_auto_20180419_1745.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/migrations/__init__.py" afterPath="$PROJECT_DIR$/translatify_translate/migrations/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/models.py" afterPath="$PROJECT_DIR$/translatify_translate/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translatify_translate/serializers.py" afterPath="$PROJECT_DIR$/translatify_translate/serializers.py" />
@@ -64,8 +65,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/translatify_translate/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+            <state relative-caret-position="532">
+              <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -98,8 +99,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translatify_translate/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+            <state relative-caret-position="190">
+              <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -130,8 +131,8 @@
         <option value="$PROJECT_DIR$/translatify/settings.py" />
         <option value="$PROJECT_DIR$/translatify_translate/urls.py" />
         <option value="$PROJECT_DIR$/translatify_translate/serializers.py" />
-        <option value="$PROJECT_DIR$/translatify_translate/views.py" />
         <option value="$PROJECT_DIR$/translatify_translate/models.py" />
+        <option value="$PROJECT_DIR$/translatify_translate/views.py" />
       </list>
     </option>
   </component>
@@ -637,6 +638,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/translatify/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="981">
+          <caret line="143" column="8" lean-forward="false" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translatify_translate/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/translatify_translate/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -657,28 +676,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translatify/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="981">
-          <caret line="143" column="8" lean-forward="false" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translatify_translate/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/translatify_translate/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+        <state relative-caret-position="532">
+          <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
