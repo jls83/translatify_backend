@@ -4,7 +4,7 @@ from translatify_translate import views
 
 urlpatterns = [
     url(r'^phrases/$', views.TranslatedPhraseList.as_view()),
-    url(r'^phrases/(?P<pk>[0-9]+)/$', views.TranslatedPhraseDetail.as_view()),
+    url(r'^phrases/(?P<pk>[0-9]+)/$', views.TranslatedPhraseDetail.as_view(), name='phrase-detail'),
     url(r'^translate/$', views.PhraseRequestList.as_view()),
     url(r'^translate/(?P<pk>[0-9]+)/$', views.PhraseRequestDetail.as_view()),
     url(r'^users/$', views.UserList.as_view()),

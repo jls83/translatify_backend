@@ -52,11 +52,9 @@ class TranslatedPhraseDetail(APIView):
         phrase.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class PhraseRequestList(APIView):
     """ View all requested translations
-
-        TO DO:
-            * Breakout language check after checking serializer.is_valid()
 
     """
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -75,9 +73,8 @@ class PhraseRequestList(APIView):
             except TranslatedPhrase.DoesNotExist:
                 translated_phrase = translate_phrase(serializer.validated_data['requested_phrase'])
                 translated_phrase.save()
-            tp_serialized = TranslatedPhraseSerializer(translated_phrase)
             serializer.save(requesting_user=self.request.user)
-            return Response(tp_serialized.data, status=status.HTTP_302_FOUND)
+            return redirect('phrase-detail', pk=translated_phrase.id)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
