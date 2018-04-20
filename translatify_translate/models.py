@@ -13,7 +13,7 @@ class TranslatedPhrase(models.Model):
 
 class PhraseRequest(models.Model):
     requested_phrase = models.CharField(max_length=500)
-    requesting_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    requesting_user = models.ForeignKey('auth.User', related_name='phrase_requests', on_delete=models.CASCADE)
     cache_hit = models.BooleanField(default=False)
     time_requested = models.DateTimeField(auto_now_add=True)
     translated_phrase = models.ForeignKey(TranslatedPhrase, on_delete=models.CASCADE, null=True)
