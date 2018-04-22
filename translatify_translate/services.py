@@ -21,5 +21,5 @@ def translate_phrase(in_phrase, destination_lang='en'):
         translated_blob = str(in_blob.translate(to=destination_lang))
     except NotTranslated:
         detected_lang = 'xx'
-        translated_blob = in_phrase
+        translated_blob = 'Sorry, there was an error translating your phrase'
     return TranslatedPhrase(input_phrase=in_phrase, input_language=detected_lang, output_phrase=translated_blob)
