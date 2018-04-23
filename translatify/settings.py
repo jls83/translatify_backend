@@ -11,10 +11,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
-SECRET_KEY = '%4$=35hj^#hr$fzgipedv)q%ogb*2y+*5yy30$kyfv7b2yf0-1'
-DEBUG = True
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['translatifyapi.sandco.io', 'translatify.sandco.io', 'localhost', '167.99.225.66', '127.0.0.1']
 
 # Application definition
 
@@ -70,8 +70,12 @@ WSGI_APPLICATION = 'translatify.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	'NAME': os.environ.get('POSTGRES_DATABASE'),
+	'USER': os.environ.get('POSTGRES_USERNAME'),
+	'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+	'HOST': os.environ.get('POSTGRES_HOSTNAME'),
+	'PORT': '',
     }
 }
 
@@ -101,6 +105,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -117,8 +122,10 @@ REST_FRAMEWORK = {
 SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-    '127.0.0.1:3000',
-    '192.168.1.191:3000',
-)
+CORS_ORIGIN_ALLOW_ALL = True
+
+#CORS_ORIGIN_WHITELIST = (
+#    'localhost:3000',
+#    '127.0.0.1:3000',
+#    '192.168.1.191:3000',
+#)
